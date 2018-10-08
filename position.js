@@ -1,27 +1,19 @@
+const myArgs = process.argv.slice(2).join(' ');
 
-function positionLetters(str) {
-  // remove spaces between strings
-  var noSpaces = str.split(" ").join("").toLowerCase();
-  // declare object variable to return
-  var characterPositions = {};
-
-  // get each character in string
-  for(var i = 0; i < noSpaces.length; i++ ) {
-    var char = noSpaces.charAt(i);
-    var curr = characterPositions[char];
-
-    if (curr === undefined) {
-      characterPositions[char] = [i];
-    } else {
-      characterPositions[char].push(i);
+function characterCount(string) {
+  let output = {};
+  let keyValue = [];
+  for (let i = 0; i < myArgs.length; i++) {
+    let key = myArgs[i];
+    if (myArgs[i] !== ' ') {
+      if (output.hasOwnProperty(myArgs[i])) {
+        output[key].push(i);
+      } else {
+        output[key] = [i];
+      }
     }
-
   }
-
-  return characterPositions;
+  return output;
 }
 
-console.log(positionLetters("lighthouse in the house"));
-
-
-
+console.log(characterCount(myArgs));
